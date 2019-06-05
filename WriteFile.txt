@@ -1,0 +1,11 @@
+Program: Grocery Calculator
+Name: Jeremy Ryan
+Class: QMB1200c OOP Using Java | Module 4 | Course Project
+2019/05/29 16:27:22
+Grocery Item 1: BREAD | Qty: 1 | Cost: $1.5
+Grocery Item 2: JELLY | Qty: 2 | Cost: $3.0
+Grocery Item 3: HAMBURGERS | Qty: 6 | Cost: $10.0 Cooking Temperature: 350 Cooking Time: 10 Cooked: false
+Grocery Item 4: STEAK | Qty: 2 | Cost: $15.0 Cooking Temperature: 375 Cooking Time: 15 Cooked: false
+Grocery Item 5: PINAPPLE | Qty: 3 | Cost: $6.0 Needs peeling: true Peeled: false
+Grocery Item 6: MANGOS | Qty: 1 | Cost: $6.5 Needs peeling: false Peeled: true
+Total Cost: $42.0 | Total Quantity: 15 | Average Cost = $2.8
