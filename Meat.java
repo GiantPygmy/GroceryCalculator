@@ -5,31 +5,31 @@ package grocery.calculator;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Jeremy Ryan
  */
 public class Meat extends Grocery {
+
     private int cookingTemp;
     private String cookingTime;
     private boolean cooked;
 
     //Constructor
-   public Meat()
-    {
+    public Meat() {
         super();
-        this.cookingTemp=0;
-        this.cookingTime="";
-        this.cooked= false;
+        this.cookingTemp = 0;
+        this.cookingTime = "";
+        this.cooked = false;
     }
-    public Meat(String name,int quantity,double cost,int cookingTemp,String cookingTime,boolean cooked)
-    {
-        super(name,quantity,cost);
-        this.cooked= cooked;
-        this.cookingTime= cookingTime;
-        this.cookingTemp= cookingTemp;
+
+    public Meat(String name, int quantity, double cost, int cookingTemp, String cookingTime, boolean cooked) {
+        super(name, quantity, cost);
+        this.cooked = cooked;
+        this.cookingTime = cookingTime;
+        this.cookingTemp = cookingTemp;
     }
+
     //get and set
     public int getCookingTemp() {
         return cookingTemp;
@@ -57,7 +57,7 @@ public class Meat extends Grocery {
 
     @Override
     public String toString() {
-        return super.toString()+" Cooking Temperature: "+cookingTemp+" Cooking Time: "+cookingTime+
-                " Cooked: "+cooked;
+        return super.toString() + " Cooking Temperature: " + cookingTemp + " Cooking Time: " + cookingTime
+                + " Cooked: " + cooked;
     }
 }

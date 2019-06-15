@@ -15,7 +15,6 @@ import java.util.Date;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Jeremy Ryan
@@ -23,8 +22,8 @@ import java.util.Date;
 public class GroceryDriver {
 
     private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-         private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-    
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+
     //function to display menu
     public static void displayMenu() {
         System.out.println("Select an option:\n(1) Input a Grocery item,\n"
@@ -35,20 +34,18 @@ public class GroceryDriver {
                 + "\n"
                 + "(-1) End user input.\n Enter: ");
     }
-    
-        public static void main(String args[]) throws IOException {
-        
-         
-        
+
+    public static void main(String args[]) throws IOException {
+
         String file_name_out = "C:\\school\\WriteFile.txt";
-        
-        //create arraylist
-        ArrayList<Grocery> groceries = new ArrayList<>();
+
+        //create queue
+        Queue groceries = new Queue();
 
         Scanner in = new Scanner(System.in);
         int userChoice = -1;
         do {
-            
+
             //the menu
             displayMenu();
             userChoice = in.nextInt();
@@ -103,7 +100,7 @@ public class GroceryDriver {
                     cookingTemp = Integer.parseInt(in.nextLine());
                     System.out.println("Enter cooking Time: (enter in minutes)");
                     cookingTime = in.nextLine();
-                    System.out.println("Is item Cooked?  (enter true or false)");
+                    System.out.println("Is item Cooked? (enter true or false)");
                     cooked = in.nextBoolean();
                     //this is where we will use the meat class
                     Meat meat = new Meat(name, quantity, cost, cookingTemp, cookingTime, cooked);
@@ -146,42 +143,51 @@ public class GroceryDriver {
         } while (userChoice != -1);
 
         //Displays the information
-        System.out.println( "Program: Grocery Calculator");
-        System.out.println( "Name: Jeremy Ryan");
-        System.out.println( "Class: QMB1200c OOP Using Java | Module 4 | Course Project");
+        System.out.println("Program: Grocery Calculator");
+        System.out.println("Name: Jeremy Ryan");
+        System.out.println("Class: QMB1200c OOP Using Java | Module 5 | Course Project");
         Date date2 = new Date();
-        System.out.println( sdf.format(date2));
-        for (int i = 0; i < groceries.size(); i++) {
-            System.out.println("Grocery Item " + (i + 1) + ":" + groceries.get(i).toString());
+        System.out.println(sdf.format(date2));
+        Grocery item = null;
+        int quantity = 0;
+        String cost = null;
+        double extendedCost = 0;
+        int size = groceries.size();
+        for (int i = 0; i < size; i++) {
+            item = groceries.get();
+            extendedCost = item.getTotalExtendedCost();
+            quantity = item.getTotalQuantity();
+            cost = item.getTotalsAverage();
+            System.out.println("Grocery Item " + (i + 1) + ":" + item.toString());
+            groceries.add(item);
         }
-        System.out.println("Total" + " Cost: $" + groceries.get(groceries.size() - 1).getTotalExtendedCost() + " | Total Quantity: "
-                + groceries.get(groceries.size() - 1).getTotalQuantity() + " | " + groceries.get(groceries.size() - 1).getTotalsAverage());
-        
+        System.out.println("Total" + " Cost: $" + extendedCost + " | Total Quantity: "
+                + quantity + " | " + cost);
+
         try {
-            
-                      
+
             System.out.println("Starting to create file");
-            WriteFile data= new WriteFile(file_name_out, false);
-            data.writeToFile( "Program: Grocery Calculator");
-            WriteFile data2= new WriteFile(file_name_out, true);
-            data2.writeToFile( "Name: Jeremy Ryan");
-            data2.writeToFile( "Class: QMB1200c OOP Using Java | Module 4 | Course Project");
+            WriteFile data = new WriteFile(file_name_out, false);
+            data.writeToFile("Program: Grocery Calculator");
+            WriteFile data2 = new WriteFile(file_name_out, true);
+            data2.writeToFile("Name: Jeremy Ryan");
+            data2.writeToFile("Class: QMB1200c OOP Using Java | Module 5 | Course Project");
             Date date = new Date();
-            data2.writeToFile( sdf.format(date));
+            data2.writeToFile(sdf.format(date));
             int z;
-            for ( z=0; z < groceries.size(); z++ ) {
-                data2.writeToFile( "Grocery Item " + (z + 1) + ":" + groceries.get(z).toString());
-            
+            for (z = 0; z < size; z++) {
+                item = groceries.get();
+                data2.writeToFile("Grocery Item " + (z + 1) + ":" + item.toString());
+
             }
-            
-            data2.writeToFile("Total" + " Cost: $" + groceries.get(groceries.size() - 1).getTotalExtendedCost() + " | Total Quantity: "
-                + groceries.get(groceries.size() - 1).getTotalQuantity() + " | " + groceries.get(groceries.size() - 1).getTotalsAverage());
+
+            data2.writeToFile("Total" + " Cost: $" + item.getTotalExtendedCost() + " | Total Quantity: "
+                    + item.getTotalQuantity() + " | " + item.getTotalsAverage());
             System.out.println("File created successfully.");
-            
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-        catch (IOException e) {
-            System.out.println( e.getMessage());
-        }
-        
+
     }
 }
